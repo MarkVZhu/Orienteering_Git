@@ -39135,12 +39135,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enableFeetIk: 1
   heightFromGroundRaycast: 0.2
-  raycastDownDistance: 1.5
+  raycastDownDistance: 1.2
   environmentLayer:
     serializedVersion: 2
     m_Bits: 1
   pelvisOffset: 0
-  pelvisUpAndDownSpeed: 0.28
+  pelvisUpAndDownSpeed: 0.5
   feetToIkPositionSpeed: 0.5
   leftFootAnimCurveName: LeftFootCurve
   rightFootAnimCurveName: RightFootCurve
