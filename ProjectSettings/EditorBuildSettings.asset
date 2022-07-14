@@ -8,5 +8,11 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/IslandDemo.unity
+    guid: 02051be8fe5525b4cad1ef766b48195d
+  - enabled: 1
+    path: Assets/Scenes/SecondSceneDemo.unity
+    guid: f50e4935ba9d95748a4b90eaba6ef7ed
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 0580b440b4c5728419a70a5fff2feee1, type: 2}
