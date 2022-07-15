@@ -45,6 +45,7 @@ public class ReachPoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             canInteracte = false;
+            m_Text.GetComponent<Text>().text = "Recording";
             enterDialog.SetActive(false);
             reachedDialog.SetActive(false);
         }
