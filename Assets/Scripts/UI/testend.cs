@@ -11,6 +11,7 @@ public class testend : MonoBehaviour
     {
         if (other.CompareTag("Player") )
         {
+            GameObject.Find("Player").GetComponent<PlayerControl>().canInput = false;
             LoadManager.GetComponent<LoadManager>().LoadNextLevel();
         }
     }

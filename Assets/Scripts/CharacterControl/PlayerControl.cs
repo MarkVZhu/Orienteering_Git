@@ -8,7 +8,10 @@ public class PlayerControl : MonoBehaviour
     public float standardSpeed = 20f;
     public float maxSpeed = 25f;
     public float rotateSpeed = 16f;
+    public bool canInput = true;
     float rotateAngle;
+    float direction = 0f;
+    float rdirection = 0f;
 
     Vector3 moveDir;
     Vector3 rotateDir;
@@ -32,7 +35,18 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         // Control the movement of the player
-        float direction = Input.GetAxis("Vertical");
+        if (canInput)
+        {
+            direction = Input.GetAxis("Vertical");
+            rdirection = Input.GetAxis("Horizontal");
+        }
+
+        else
+        {
+            direction = 0;
+            rdirection = 0;
+        }
+            
         moveDir = new Vector3(0, 0, 0);
 
         if (direction > 0)
@@ -69,7 +83,7 @@ public class PlayerControl : MonoBehaviour
         }
 
         moveAmount = moveDir * currentSpeed * Time.deltaTime;
-        rotateDir = new Vector3(0, Input.GetAxis("Horizontal"), 0).normalized;
+        rotateDir = new Vector3(0, rdirection, 0).normalized;
         rotateAngle += rotateDir.y*rotateSpeed* Time.deltaTime;
         //Debug.Log(rotateAngle);
         SwitchAnimation();

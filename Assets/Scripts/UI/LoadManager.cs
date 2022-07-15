@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class LoadManager : MonoBehaviour
 {
     public GameObject loadScreen;
+    public GameObject resultScreen;
     public Slider slider;
     public Text text;
     private float waitInterval;
@@ -25,6 +26,9 @@ public class LoadManager : MonoBehaviour
 
    private IEnumerator Loadlevel()
     {
+        resultScreen.SetActive(true);
+        yield return new WaitForSeconds(5f);
+
         loadScreen.SetActive(true);
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
