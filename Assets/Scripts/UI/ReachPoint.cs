@@ -7,7 +7,7 @@ public class ReachPoint : MonoBehaviour
 {
     private bool canInteracte = false;
     private bool isReached = false;
-    public Material reached;
+    public GameObject reachedEffect;
     public GameObject enterDialog;
     public GameObject reachedDialog;
 
@@ -72,7 +72,14 @@ public class ReachPoint : MonoBehaviour
         {
             isReached = true;
             m_Text.GetComponent<Text>().text = "Recorded";
-            this.GetComponent<MeshRenderer>().material = reached;
+            StartCoroutine(SetFireworkEffect());
         }
+    }
+
+    private IEnumerator SetFireworkEffect()
+    {
+        reachedEffect.SetActive(true);
+        yield return new WaitForSecondsRealtime(1f);
+        reachedEffect.SetActive(false);
     }
 }
