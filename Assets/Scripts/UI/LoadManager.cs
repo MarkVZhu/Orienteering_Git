@@ -8,9 +8,12 @@ public class LoadManager : MonoBehaviour
 {
     public GameObject loadScreen;
     public GameObject resultScreen;
+    public GameObject continueText;
     public Slider slider;
     public Text text;
+
     private float waitInterval;
+    private bool canShowLoadScreen;
     private float mount;
 
     private void Start()
@@ -21,14 +24,25 @@ public class LoadManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        StartCoroutine(Loadlevel());
+        StartCoroutine(LoadlevelScreen());
     }
 
-   private IEnumerator Loadlevel()
+    public void LoadLevel()
+    {
+        StartCoroutine(LoadLevelEx());
+    }
+
+   private IEnumerator LoadlevelScreen()
     {
         resultScreen.SetActive(true);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
+        continueText.SetActive(true);
+        canShowLoadScreen = true;
+        yield return null;
+    }
 
+    public IEnumerator LoadLevelEx()
+    {
         loadScreen.SetActive(true);
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
@@ -37,12 +51,12 @@ public class LoadManager : MonoBehaviour
 
         while (!operation.isDone)
         {
-            if(slider.value < 0.59)
+            if (slider.value < 0.59)
             {
                 slider.value = operation.progress / 1.5f;
                 text.text = (int)(slider.value * 100) + "%";
             }
-            else if(slider.value < 0.98)
+            else if (slider.value < 0.98)
             {
                 yield return new WaitForSeconds(waitInterval);
                 slider.value += mount;
@@ -52,12 +66,17 @@ public class LoadManager : MonoBehaviour
             {
                 slider.value = 1;
                 text.text = "Walk to continue";
-                if(Input.GetKeyDown(KeyCode.W))
+                if (Input.GetKeyDown(KeyCode.W))
                 {
                     operation.allowSceneActivation = true;
                 }
             }
             yield return null;
         }
+    }
+
+    public bool GetCanShowLoadScreen()
+    {
+        return canShowLoadScreen;
     }
 }
