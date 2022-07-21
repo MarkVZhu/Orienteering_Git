@@ -7,6 +7,7 @@ public class ReachPoint : MonoBehaviour
 {
     private bool canInteracte = false;
     private bool isReached = false;
+    private bool OrderCorrect = false;
     public GameObject reachedEffect;
     public GameObject enterDialog;
     public GameObject reachedDialog;
@@ -29,7 +30,8 @@ public class ReachPoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !isReached)
+        isOrderCorrect();
+        if (other.CompareTag("Player") && !isReached && OrderCorrect)
         { 
             canInteracte = true;
             enterDialog.SetActive(true);
@@ -71,6 +73,7 @@ public class ReachPoint : MonoBehaviour
         else
         {
             isReached = true;
+            TimerManager.instance.RecordTimePoint(GetOrderThisPoint());
             m_Text.GetComponent<Text>().text = "Recorded";
             StartCoroutine(SetFireworkEffect());
         }
@@ -82,4 +85,24 @@ public class ReachPoint : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
         reachedEffect.SetActive(false);
     }
+
+    private int GetOrderThisPoint()
+    {
+        string pointName = this.transform.parent.name;
+        int thisOrder = int.Parse(pointName.Substring(pointName.Length-1));
+        return thisOrder;
+    }
+
+    private void isOrderCorrect()
+    {
+        if(GetOrderThisPoint() == 1)
+        {
+            OrderCorrect = true;
+        }
+        else if(RuleManager.ruleInstance.timeArrayForPoints[GetOrderThisPoint() - 2] != 0)
+        {
+            OrderCorrect = true;
+        }
+    }
+
 }
