@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class TimerManager : MonoBehaviour
 {
     public static TimerManager instance;
+   
     Timer generalTimer;
     public GameObject totalTimeText;
     public GameObject partTimeText;

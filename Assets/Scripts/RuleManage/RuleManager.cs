@@ -28,8 +28,8 @@ public class RuleManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    /*private void Update()
     {
         Debug.Log(timeArrayForPoints[0] + "," + timeArrayForPoints[1] + "," + timeArrayForPoints[2]);
-    }
+    }*/
 }
