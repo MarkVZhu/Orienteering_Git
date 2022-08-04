@@ -44,6 +44,7 @@ public class LoadManager : MonoBehaviour
     public IEnumerator LoadLevelEx()
     {
         loadScreen.SetActive(true);
+        BGMManager.Instance.MuteLevelMusic();
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
 
@@ -69,6 +70,7 @@ public class LoadManager : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.W))
                 {
                     operation.allowSceneActivation = true;
+                    BGMManager.Instance.LevelMusicChange();
                 }
             }
             yield return null;

@@ -8,7 +8,7 @@ public struct SurfaceDefinition {
 
 [System.Serializable]
 public struct RegisteredMaterial {
-	public Texture texture;
+	public Material texture;
 	public int surfaceIndex;
 }
 
@@ -29,8 +29,8 @@ public class SurfaceManager : MonoBehaviour {
 
 	public AudioClip GetFootstep(Collider groundCollider, Vector3 worldPosition) {
 		int surfaceIndex = GetSurfaceIndex(groundCollider, worldPosition);
-
-		if(surfaceIndex == -1) {
+		Debug.Log("sufaceindex=" + surfaceIndex);
+		if (surfaceIndex == -1) {
 			return null;
 		}
 
@@ -95,10 +95,11 @@ public class SurfaceManager : MonoBehaviour {
 		// Case when the ground is a normal mesh.
 		else {
 			textureName = GetMeshMaterialAtPoint(worldPos, new Ray(Vector3.zero, Vector3.zero));
+			//Debug.Log("尝试获取材质" + textureName);
 		}
 		// Searching for the found texture / material name in registered materials.
 		foreach(var material in registeredTextures) {
-			if(material.texture.name == textureName) {
+			if (textureName.Contains(material.texture.name )) {
 				return material.surfaceIndex;
 			}
 		}
@@ -108,11 +109,11 @@ public class SurfaceManager : MonoBehaviour {
 
 	string GetMeshMaterialAtPoint(Vector3 worldPosition, Ray ray) {
 		if(ray.direction == Vector3.zero) {
-			ray = new Ray(worldPosition + Vector3.up * 0.01f, Vector3.down);
+			ray = new Ray(worldPosition + Vector3.up * 0.1f, Vector3.down*2f);
 		}
 
 		RaycastHit hit;
-
+		
 		if (!Physics.Raycast (ray, out hit)) {
 			return "";
 		}
@@ -120,11 +121,11 @@ public class SurfaceManager : MonoBehaviour {
 		Renderer r = hit.collider.GetComponent<Renderer>();
 		MeshCollider mc = hit.collider as MeshCollider;
 
-		if (r == null || r.sharedMaterial == null || r.sharedMaterial.mainTexture == null || r == null) {
+		if (r == null || r.sharedMaterial == null ||  r == null) {
 			return "";
 		}
 		else if(!mc || mc.convex) {
-			return r.material.mainTexture.name;
+			return r.material.name;
 		}
 
 		int materialIndex = -1;
@@ -149,8 +150,8 @@ public class SurfaceManager : MonoBehaviour {
 			if (materialIndex != -1) break;
 		}
 
-		string textureName = r.materials[materialIndex].mainTexture.name;
-
+		string textureName = r.materials[materialIndex].name;
+		Debug.Log("Material uder is " + textureName);
 		return textureName;
 	}
 
