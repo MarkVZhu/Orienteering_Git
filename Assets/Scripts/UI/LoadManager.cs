@@ -20,6 +20,8 @@ public class LoadManager : MonoBehaviour
     {
         mount = Random.Range(4,8f)/100;
         waitInterval = Random.Range(1, 4f) / 10;
+        if(BGMManager.Instance)
+            BGMManager.Instance.LevelMusicChange(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void LoadNextLevel()
@@ -70,7 +72,6 @@ public class LoadManager : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.W))
                 {
                     operation.allowSceneActivation = true;
-                    BGMManager.Instance.LevelMusicChange();
                 }
             }
             yield return null;

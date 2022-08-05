@@ -28,11 +28,9 @@ public class BGMManager: MonoBehaviour
         _musicSource[levelIndex].SetActive(true);
     }
 
-    public void LevelMusicChange()
+    public void LevelMusicChange(int levelIndex)
     {
-        int levelIndex = SceneManager.GetActiveScene().buildIndex;
-        _musicSource[levelIndex].SetActive(false);
-        _musicSource[levelIndex+1].SetActive(true);
+        _musicSource[levelIndex].SetActive(true);
     }
 
     public void MuteLevelMusic()

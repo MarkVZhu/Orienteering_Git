@@ -29,7 +29,6 @@ public class SurfaceManager : MonoBehaviour {
 
 	public AudioClip GetFootstep(Collider groundCollider, Vector3 worldPosition) {
 		int surfaceIndex = GetSurfaceIndex(groundCollider, worldPosition);
-		Debug.Log("sufaceindex=" + surfaceIndex);
 		if (surfaceIndex == -1) {
 			return null;
 		}
@@ -151,7 +150,6 @@ public class SurfaceManager : MonoBehaviour {
 		}
 
 		string textureName = r.materials[materialIndex].name;
-		Debug.Log("Material uder is " + textureName);
 		return textureName;
 	}
 
