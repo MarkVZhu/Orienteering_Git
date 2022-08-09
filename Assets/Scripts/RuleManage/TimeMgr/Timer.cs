@@ -11,7 +11,9 @@ public class Timer
     }
 
     bool isRecording = false;
+    float currentTime = 0;
     float startTime;
+    float pauseTime = 0;
 
     public void StartRecording()
     {
@@ -19,14 +21,26 @@ public class Timer
         startTime = Time.time;
     }
 
+    public void PauseRecording()
+    {
+        pauseTime = Time.time - pauseTime; // Include the last pauseTime 
+        isRecording = false;
+    }
+
+    public void RestartRecording()
+    {
+        pauseTime = Time.time - pauseTime; // In this formula, the last pauseTime has been added
+        isRecording = true;
+    }
+
     public float GetCurrentRecord()
     {
         if (isRecording)
         {
-            float deltaTime = Time.time - startTime;
-            return deltaTime;
+            currentTime = Time.time - startTime - pauseTime;
+            return currentTime;
         }
-        else return 0;
+        else return currentTime;
     }
 
     public void Reset()

@@ -115,19 +115,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &3836972912950523720
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4178992290953041399}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.703009
-  m_Center: {x: -0.018990934, y: 0.95103323, z: 0.029054284}
 --- !u!64 &3836972912950523719
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -161,6 +148,20 @@ MonoBehaviour:
   m_Image: {fileID: 0}
   m_Text: {fileID: 0}
   targetProcess: 100
+--- !u!136 &9153237008125064507
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4178992290953041399}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 2.871688
+  m_Height: 9.285032
+  m_Direction: 1
+  m_Center: {x: -0.017495751, y: 1.4767232, z: 0.06264925}
 --- !u!1001 &3836972914410077075
 PrefabInstance:
   m_ObjectHideFlags: 0
