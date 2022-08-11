@@ -1,2 +1,12 @@
-This is test2
-Here is the tutorial level of the game. 
+Good job, you have reached the first contol point. 
+Now, let me introduce you every element on the screen.
+On the left-bottom corner, there is a compass with the north arrow, and the red pointer always points north.
+You need to find your position and way to your next contol point with the compass and the map on your hand. 
+The texts on the right-top corner of the screen are current time, the time of your last contol point, and your next contol point.
+In an orienteering, players should try to pass the contol points in the order indicated on the map in as short time as possible. 
+Therefore, you need to determine your location and find the appropriate path to the next control point.
+Here is a technique that can help you in orienteering. 
+Firstly, turn the map in your hand until the red arrow in the front of the compass points to  your next contol point's location from your current location on the map. 
+After that, rotate the player until the north pointer in the compass align to the north direction of your map. 
+Then, you will be orientating to the direction of your next control point. 
+Now, you are already a qualified orienteering athlete! Try to find and reach your next point! 
