@@ -9,8 +9,9 @@ public class LoadManager : MonoBehaviour
     public GameObject loadScreen;
     public GameObject resultScreen;
     public GameObject continueText;
-    public Slider slider;
     public Text text;
+    private Slider slider;
+    
 
     private float waitInterval;
     private bool canShowLoadScreen;
@@ -20,13 +21,14 @@ public class LoadManager : MonoBehaviour
     {
         mount = Random.Range(4,8f)/100;
         waitInterval = Random.Range(1, 4f) / 10;
-        if(BGMManager.Instance)
+        slider = loadScreen.GetComponentInChildren<Slider>();
+        if (BGMManager.Instance)
             BGMManager.Instance.LevelMusicChange(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void LoadNextLevel()
+    public void ResultBeforeLoadNextLevel()
     {
-        StartCoroutine(LoadlevelScreen());
+        StartCoroutine(LevelResulScreen());
     }
 
     public void LoadLevel()
@@ -34,21 +36,30 @@ public class LoadManager : MonoBehaviour
         StartCoroutine(LoadLevelEx());
     }
 
-   private IEnumerator LoadlevelScreen()
+   private IEnumerator LevelResulScreen()
     {
-        resultScreen.SetActive(true);
-        yield return new WaitForSeconds(3f);
-        continueText.SetActive(true);
+        if (resultScreen && continueText)
+        {
+            resultScreen.SetActive(true);
+            yield return new WaitForSeconds(3f);
+            continueText.SetActive(true);
+        }
         canShowLoadScreen = true;
         yield return null;
     }
 
     public IEnumerator LoadLevelEx()
     {
+        LoadLevelEx(SceneManager.GetActiveScene().buildIndex + 1);
+        yield return null;
+    }
+
+    public IEnumerator LoadLevelEx(int nextLevelNumber)
+    {
         loadScreen.SetActive(true);
         BGMManager.Instance.MuteLevelMusic();
 
-        AsyncOperation operation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(nextLevelNumber);
 
         operation.allowSceneActivation = false;
 
