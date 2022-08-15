@@ -11,11 +11,16 @@ public class LoadManager : MonoBehaviour
     public GameObject continueText;
     public Text text;
     private Slider slider;
-    
 
+    public static LoadManager Instance;
     private float waitInterval;
     private bool canShowLoadScreen;
     private float mount;
+
+    public void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -48,12 +53,14 @@ public class LoadManager : MonoBehaviour
         yield return null;
     }
 
+    //Load next level
     public IEnumerator LoadLevelEx()
     {
         LoadLevelEx(SceneManager.GetActiveScene().buildIndex + 1);
         yield return null;
     }
 
+    //Load level with particular order
     public IEnumerator LoadLevelEx(int nextLevelNumber)
     {
         loadScreen.SetActive(true);
@@ -87,6 +94,49 @@ public class LoadManager : MonoBehaviour
             }
             yield return null;
         }
+    }
+
+    public IEnumerator LoadLevelExWithLoadPage(int nextLevelNumber, GameObject loadScreen)
+    {
+        Debug.Log("True");
+        loadScreen.SetActive(true);
+        BGMManager.Instance.MuteLevelMusic();
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync(nextLevelNumber);
+
+        operation.allowSceneActivation = false;
+
+        Slider slider = loadScreen.GetComponentInChildren<Slider>();
+
+        while (!operation.isDone)
+        {
+            if (slider.value < 0.59)
+            {
+                slider.value = operation.progress / 1.5f;
+                text.text = (int)(slider.value * 100) + "%";
+            }
+            else if (slider.value < 0.98)
+            {
+                yield return new WaitForSeconds(waitInterval);
+                slider.value += mount;
+                text.text = (int)(slider.value * 100) + "%";
+            }
+            else
+            {
+                slider.value = 1;
+                text.text = "Walk to continue";
+                if (Input.GetKeyDown(KeyCode.W))
+                {
+                    operation.allowSceneActivation = true;
+                }
+            }
+            yield return null;
+        }
+    }
+
+    public void LoadLevelExWithLoadPageButton(int nextLevelNumber, GameObject loadScreen)
+    {
+        StartCoroutine(LoadLevelExWithLoadPage(nextLevelNumber, loadScreen));
     }
 
     public bool GetCanShowLoadScreen()
