@@ -56,17 +56,11 @@ public class LoadManager : MonoBehaviour
     //Load next level
     public IEnumerator LoadLevelEx()
     {
-        LoadLevelEx(SceneManager.GetActiveScene().buildIndex + 1);
-        yield return null;
-    }
-
-    //Load level with particular order
-    public IEnumerator LoadLevelEx(int nextLevelNumber)
-    {
+        Debug.Log("Can show");
         loadScreen.SetActive(true);
         BGMManager.Instance.MuteLevelMusic();
 
-        AsyncOperation operation = SceneManager.LoadSceneAsync(nextLevelNumber);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
 
         operation.allowSceneActivation = false;
 
@@ -107,6 +101,7 @@ public class LoadManager : MonoBehaviour
         operation.allowSceneActivation = false;
 
         Slider slider = loadScreen.GetComponentInChildren<Slider>();
+        Text text = loadScreen.GetComponentInChildren<Text>();
 
         while (!operation.isDone)
         {

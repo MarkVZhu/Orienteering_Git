@@ -5,11 +5,20 @@ namespace Assets.Scripts.UI.MainMenu
 {
     public class UIManager : MonoBehaviour
     {
+        public GameObject[] menuUIList;  
 
         public void PageActivate(GameObject page)
         {
             if (!page.activeInHierarchy)
             {
+                for(int i = 0;  i < menuUIList.Length; i++)
+                {
+                    if (!page.name.Equals(menuUIList[i].name))
+                    {
+                        //Deactivate other pages when it activates one page
+                        menuUIList[i].SetActive(false);
+                    }
+                }
                 page.SetActive(true);
             }
         }

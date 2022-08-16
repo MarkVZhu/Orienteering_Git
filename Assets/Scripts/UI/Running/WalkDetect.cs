@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class WalkDetect : MonoBehaviour
 {
-    public GameObject LoadManager;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && LoadManager.GetComponent<LoadManager>().GetCanShowLoadScreen())
+        if (Input.GetKeyDown(KeyCode.W) && LoadManager.Instance.GetCanShowLoadScreen())
         {
-            LoadManager.GetComponent<LoadManager>().LoadLevel ();
+            LoadManager.Instance.LoadLevel ();
         }
     }
 }
