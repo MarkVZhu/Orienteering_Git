@@ -56,7 +56,7 @@ public class LoadManager : MonoBehaviour
     //Load next level
     public IEnumerator LoadLevelEx()
     {
-        Debug.Log("Can show");
+
         loadScreen.SetActive(true);
         BGMManager.Instance.MuteLevelMusic();
 
@@ -92,7 +92,6 @@ public class LoadManager : MonoBehaviour
 
     public IEnumerator LoadLevelExWithLoadPage(int nextLevelNumber, GameObject loadScreen)
     {
-        Debug.Log("True");
         loadScreen.SetActive(true);
         BGMManager.Instance.MuteLevelMusic();
 
@@ -132,6 +131,11 @@ public class LoadManager : MonoBehaviour
     public void LoadLevelExWithLoadPageButton(int nextLevelNumber, GameObject loadScreen)
     {
         StartCoroutine(LoadLevelExWithLoadPage(nextLevelNumber, loadScreen));
+    }
+
+    public void BackToMainmenu()
+    {
+        SceneManager.LoadScene(4);
     }
 
     public bool GetCanShowLoadScreen()
