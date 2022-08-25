@@ -1,5 +1,4 @@
-Welcome to Go to The Point!
-Here is the tutorial level of the game. 
+Welcome to Go to The Point! Here is the tutorial level of the game. 
 Before starting, please wear devices according to instructions on the back of the map.
 Good, you have got the gear on!
 The white and orange flags you can see are control points. 

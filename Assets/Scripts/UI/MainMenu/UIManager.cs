@@ -28,6 +28,7 @@ namespace Assets.Scripts.UI.MainMenu
             if (page.activeInHierarchy)
             {
                 page.SetActive(false);
+                menuUIList[menuUIList.Length-1].SetActive(true); // Show Title
             }
         }
         public void LoadLevelByBuildInNumber(GameObject page)

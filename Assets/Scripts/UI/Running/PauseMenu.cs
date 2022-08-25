@@ -13,7 +13,8 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && pausePanel&& canPause)
         {
-            PauseGame();
+            if (GameObject.Find("Player").GetComponent<PlayerControl>().canInput)
+                PauseGame();
         }
     }
 
@@ -34,6 +35,7 @@ public class PauseMenu : MonoBehaviour
     public void BackToMainmenu()
     {
         Time.timeScale = 1f; // To ensure yield return new WaitForSeconds() can function normally
+        BGMManager.Instance.MuteLevelMusic();
         LoadManager.Instance.BackToMainmenu();
     }
 }

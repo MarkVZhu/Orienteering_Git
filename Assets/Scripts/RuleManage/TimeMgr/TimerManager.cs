@@ -19,7 +19,7 @@ public class TimerManager : MonoBehaviour
         instance = this;
     }
 
-    private void Start()
+    private void OnEnable()
     {
         generalTimer.StartRecording();
     }

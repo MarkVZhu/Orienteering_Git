@@ -24,10 +24,14 @@ public class LoadManager : MonoBehaviour
 
     private void Start()
     {
-        mount = Random.Range(4,8f)/100;
-        waitInterval = Random.Range(1, 4f) / 10;
-        slider = loadScreen.GetComponentInChildren<Slider>();
-        if (BGMManager.Instance)
+        if (loadScreen)
+        {
+            mount = Random.Range(4, 8f) / 100;
+            waitInterval = Random.Range(1, 4f) / 10;
+            slider = loadScreen.GetComponentInChildren<Slider>();
+        }
+
+        if (BGMManager.Instance && SceneManager.GetActiveScene().buildIndex == 4 || SceneManager.GetActiveScene().buildIndex == 0)
             BGMManager.Instance.LevelMusicChange(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -56,37 +60,43 @@ public class LoadManager : MonoBehaviour
     //Load next level
     public IEnumerator LoadLevelEx()
     {
-
-        loadScreen.SetActive(true);
-        BGMManager.Instance.MuteLevelMusic();
-
-        AsyncOperation operation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
-
-        operation.allowSceneActivation = false;
-
-        while (!operation.isDone)
+        if (loadScreen)
         {
-            if (slider.value < 0.59)
+            loadScreen.SetActive(true);
+            BGMManager.Instance.MuteLevelMusic();
+
+            AsyncOperation operation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+
+            operation.allowSceneActivation = false;
+
+            while (!operation.isDone)
             {
-                slider.value = operation.progress / 1.5f;
-                text.text = (int)(slider.value * 100) + "%";
-            }
-            else if (slider.value < 0.98)
-            {
-                yield return new WaitForSeconds(waitInterval);
-                slider.value += mount;
-                text.text = (int)(slider.value * 100) + "%";
-            }
-            else
-            {
-                slider.value = 1;
-                text.text = "Walk to continue";
-                if (Input.GetKeyDown(KeyCode.W))
+                if (slider.value < 0.59)
                 {
-                    operation.allowSceneActivation = true;
+                    slider.value = operation.progress / 1.5f;
+                    text.text = (int)(slider.value * 100) + "%";
                 }
+                else if (slider.value < 0.98)
+                {
+                    yield return new WaitForSeconds(waitInterval);
+                    slider.value += mount;
+                    text.text = (int)(slider.value * 100) + "%";
+                }
+                else
+                {
+                    slider.value = 1;
+                    text.text = "Walk to continue";
+                    if (Input.GetKeyDown(KeyCode.W))
+                    {
+                        operation.allowSceneActivation = true;
+                    }
+                }
+                yield return null;
             }
-            yield return null;
+        }
+        else
+        {
+            SceneManager.LoadScene(4);
         }
     }
 
