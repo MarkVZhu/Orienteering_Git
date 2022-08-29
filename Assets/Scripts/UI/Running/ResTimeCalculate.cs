@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ResTimeCalculate : MonoBehaviour
 {
@@ -16,7 +17,16 @@ public class ResTimeCalculate : MonoBehaviour
                 resText += pointsArray[i].GetName() + " => " + pointsArray[i + 1].GetName() +
                     "  takes " + Timer.ToTimeFormat(timeArray[i + 1] - timeArray[i]) + "\n";
         }
-        resText +=  "Total time is " +  Timer.ToTimeFormat(timeArray[timeArray.Length - 1]);
+        float levelTime = timeArray[timeArray.Length - 1];
+        resText +=  "Total time is " +  Timer.ToTimeFormat(levelTime);
         this.GetComponent<Text>().text = resText;
+
+        float recordTime = LoadData.instance.GetLevelRecord()[SceneManager.GetActiveScene().buildIndex - 1];
+
+        if (levelTime < recordTime || recordTime == 0)
+        {
+            LoadData.instance.ChangeLevelRecord(SceneManager.GetActiveScene().buildIndex, levelTime);
+            LoadData.instance.LoadGame();
+        }
     }
 }

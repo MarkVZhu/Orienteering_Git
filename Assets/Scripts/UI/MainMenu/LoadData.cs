@@ -41,7 +41,12 @@ public class LoadData: MonoBehaviour
     {
         saveData.levelLockInfor[levelNum - 1] = isLockOpen;
         SaveGame();
-        
+    }
+
+    public void ChangeLevelRecord(int levelNum, float bestTime)
+    {
+        saveData.levelRecord[levelNum - 1] = bestTime;
+        SaveGame();
     }
 
     public void SaveGame()
@@ -87,9 +92,15 @@ public class LoadData: MonoBehaviour
     {
         return saveData.levelLockInfor; 
     }
+
+    public float[] GetLevelRecord()
+    {
+        return saveData.levelRecord;
+    }
 }
 
 [System.Serializable]
 public class SaveData {
     public bool[] levelLockInfor;
+    public float[] levelRecord;
 }
