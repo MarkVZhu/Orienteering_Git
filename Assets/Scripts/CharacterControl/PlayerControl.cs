@@ -12,6 +12,7 @@ public class PlayerControl : MonoBehaviour
     float rotateAngle;
     float direction = 0f;
     float rdirection = 0f;
+    float accelerate = 0f;
 
     Vector3 moveDir;
     Vector3 rotateDir;
@@ -39,6 +40,7 @@ public class PlayerControl : MonoBehaviour
         {
             direction = Input.GetAxis("Vertical");
             rdirection = Input.GetAxis("Horizontal");
+            accelerate = Input.GetAxis("Accelerate");
         }
 
         else
@@ -54,6 +56,16 @@ public class PlayerControl : MonoBehaviour
             if(currentSpeed < standardSpeed)
             {
                 currentSpeed += standardSpeed*Time.deltaTime;
+            }
+
+            // acceleration operation
+            if(accelerate > 0 && currentSpeed < maxSpeed)
+            {
+                currentSpeed += standardSpeed * Time.deltaTime;
+            }
+            else if(!(accelerate > 0) && currentSpeed > standardSpeed)
+            {
+                currentSpeed -= standardSpeed * Time.deltaTime * 0.5f;
             }
             
             rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
