@@ -1,8 +1,0 @@
-Welcome to Go to The Point! Here is the tutorial level of the game. 
-Before starting, please wear devices according to instructions on the back of the map.
-Good, you have got the gear on!
-The white and orange flags you can see are control points. 
-The control point next to you is the initial point.
-In an orienteering, you start your trip from the initial control point.  
-Now, try stepping and moving to the first conrtol point in frount of you. 
-Remember to stop for a few seconds to wait the control point recording the time. 

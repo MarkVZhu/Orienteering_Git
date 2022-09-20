@@ -1,8 +1,0 @@
-Good job, you have reached the first contol point. 
-Now, let me introduce you every element on the screen.
-On the left-bottom corner, there is a compass with the north arrow, and the red pointer always points north.
-You need to find your position and way to your next contol point with the compass and the map on your hand. 
-The texts on the right-top corner of the screen are current time, the time of your last contol point, and your next contol point.
-In an orienteering, players should try to pass the contol points in the order indicated on the map in as short time as possible. 
-Therefore, you need to determine your location and find the appropriate path to the next control point.
-Now, try to find and reach your next point! 

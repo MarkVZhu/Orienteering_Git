@@ -11,9 +11,9 @@ TagManager:
   - 
   - Water
   - UI
-  - Footstep
   - 
   - 
+  - Collectable
   - 
   - 
   - 
@@ -40,4 +40,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: background
+    uniqueID: 2499174537
+    locked: 0
+  - name: character
+    uniqueID: 2777712093
     locked: 0
