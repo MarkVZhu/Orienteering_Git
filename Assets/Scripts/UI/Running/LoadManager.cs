@@ -42,7 +42,15 @@ public class LoadManager : MonoBehaviour
 
     public void LoadLevel()
     {
-        StartCoroutine(LoadLevelEx());
+        if (SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            BGMManager.Instance.MuteLevelMusic();
+            BackToMainmenu();
+        }
+        else
+        {
+            StartCoroutine(LoadLevelEx());
+        }
     }
 
    private IEnumerator LevelResulScreen()
@@ -145,7 +153,7 @@ public class LoadManager : MonoBehaviour
 
     public void BackToMainmenu()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(0);
     }
 
     public bool GetCanShowLoadScreen()

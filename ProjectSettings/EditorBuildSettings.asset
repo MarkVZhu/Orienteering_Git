@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Teach 0.unity
-    guid: 444d0f7433d565847a3f6e0dd7e4e840
+    path: Assets/Scenes/MainMenu.unity
+    guid: 077ab82a9b1bb41428d10ab9b0c14716
   - enabled: 1
     path: Assets/Scenes/Farm 1.unity
     guid: 61644afea8c1fef438f85c0ed08765bf
@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Castle 3.unity
     guid: 64edca48cbbf36c4b8cb0c11f370bc29
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 077ab82a9b1bb41428d10ab9b0c14716
+    path: Assets/Scenes/Teach 0.unity
+    guid: 444d0f7433d565847a3f6e0dd7e4e840
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 0580b440b4c5728419a70a5fff2feee1, type: 2}
