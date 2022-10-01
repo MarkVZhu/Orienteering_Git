@@ -72,12 +72,12 @@ public class PlayerControl : MonoBehaviour
             moveDir = transform.forward.normalized;
         }
 
-        else if (direction < 0)
+        /*else if (direction < 0)
         {
             currentSpeed = standardSpeed;
             rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
             moveDir = -transform.forward.normalized;
-        }
+        }*/
 
         else
         {

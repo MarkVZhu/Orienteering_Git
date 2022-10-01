@@ -8,6 +8,11 @@ public class PauseMenu : MonoBehaviour
     public GameObject pausePanel;
     private bool canPause = true;
 
+    private void Awake()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -22,6 +27,7 @@ public class PauseMenu : MonoBehaviour
     {
         canPause = false;
         pausePanel.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0f;
     }
 
@@ -29,6 +35,7 @@ public class PauseMenu : MonoBehaviour
     {
         canPause = true;
         pausePanel.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1f;
     }
 

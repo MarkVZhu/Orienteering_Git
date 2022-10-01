@@ -26,15 +26,18 @@ public class ResTimeCalculate : MonoBehaviour
         resText +=  "Total time is " +  Timer.ToTimeFormat(levelTime);
         this.GetComponent<Text>().text = resText;
 
-        StartCoroutine(ShowMedal(levelTime));
-
-        //Juage if the new time record is shorter than old one, and whether update
-        float recordTime = LoadData.instance.GetLevelRecord()[SceneManager.GetActiveScene().buildIndex - 1];
-
-        if (levelTime < recordTime || recordTime == 0)
+        if (medalImage)
         {
-            LoadData.instance.ChangeLevelRecord(SceneManager.GetActiveScene().buildIndex, levelTime);
-            LoadData.instance.LoadGame();
+            StartCoroutine(ShowMedal(levelTime));
+
+            //Juage if the new time record is shorter than old one, and whether update
+            float recordTime = LoadData.instance.GetLevelRecord()[SceneManager.GetActiveScene().buildIndex - 1];
+
+            if (levelTime < recordTime || recordTime == 0)
+            {
+                LoadData.instance.ChangeLevelRecord(SceneManager.GetActiveScene().buildIndex, levelTime);
+                LoadData.instance.LoadGame();
+            }
         }
     }
 

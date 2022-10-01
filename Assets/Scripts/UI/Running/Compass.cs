@@ -17,7 +17,7 @@ public class Compass : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        zRotation = -obj.transform.eulerAngles.y;
+        zRotation = obj.transform.eulerAngles.y;
         transform.eulerAngles = new Vector3(0, 0, zRotation);
     }
 }

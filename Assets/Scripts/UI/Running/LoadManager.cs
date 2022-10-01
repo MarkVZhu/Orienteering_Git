@@ -73,7 +73,17 @@ public class LoadManager : MonoBehaviour
             loadScreen.SetActive(true);
             BGMManager.Instance.MuteLevelMusic();
 
-            AsyncOperation operation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+            AsyncOperation operation;
+
+            if (SceneManager.GetActiveScene().buildIndex == 4)
+            {
+                operation = SceneManager.LoadSceneAsync(1);
+            }
+            else
+            {
+                operation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            
 
             operation.allowSceneActivation = false;
 
