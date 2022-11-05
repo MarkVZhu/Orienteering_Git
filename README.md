@@ -14,4 +14,4 @@ If you want to examine the scripts of the game, you can find programs under Asse
 <div align=center><img src="https://user-images.githubusercontent.com/61057370/199633244-67b1874e-5388-4db2-a836-6896e7c95151.png" width="275" height="450" alt="ROOM"/></div>
 
 ## Play 
-If you want to play this game, please follow this address https://mark-zf.itch.io
+If you want to play this game, please follow this address https://mark-zf.itch.io/go-to-the-point
