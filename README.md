@@ -13,7 +13,7 @@ Unity Editor version: 2020.3.25f1c1
 If you want to examine the scripts of the game, you can find programs under Assets/Scripts.
 <div align=center><img src="https://user-images.githubusercontent.com/61057370/199633244-67b1874e-5388-4db2-a836-6896e7c95151.png" width="275" height="450" alt="ROOM"/></div>
 
-## Code Desciption
+## Desciption
 Due to limited space, I only describe one important part of the code sample in this project. In the **RuleManger** folder, there are four scripts implementing the rule of orienteering in the game. I applied the concept of object-oriented programming, dividing the rule system into four different classes. Point class contains basic information about a control point, including name, order, and time (when the player reaches this point); RuleManager class loads control points in the scene into an array; Timer class contains functions for time record; TimerManager class controls the timer and corresponding UI contents. 
 
 ## Play 
